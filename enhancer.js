@@ -6,7 +6,8 @@ module.exports = {
 
     success: (item) => {
        const spell = item.enhancement + 1;
-        return { ...item, enhancement: spell};
+       const  ogName = item.name 
+        return { ...item, enhancement: spell, name: `+[${spell}] ${ogName}` };
     },
 
     fail: (item) => {
