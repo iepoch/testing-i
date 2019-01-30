@@ -4,10 +4,9 @@
 
 module.exports = {
 
-    sucess: (item) => {
-        return {
-            ...item
-        }
+    success: (item) => {
+       const spell = item.enhancement + 1;
+        return { ...item, enhancement: spell};
     },
 
     fail: (item) => {
@@ -16,6 +15,7 @@ module.exports = {
 
     repair: (item) => {
 
+        return{ ...item, durability: 100}
     }
 }
 

@@ -5,7 +5,7 @@ module.exports = {
             name: 'Sword',
             type: 'weapon',
             durability: 70,
-            enhancement: 'PEN'
+            enhancement: 0
         },
 
     sheilds:
@@ -13,7 +13,7 @@ module.exports = {
             name: 'Sheild',
             type: 'armour',
             durability: 100,
-            enhancement: 'DUO'
+            enhancement: 0
         },
 
 }
