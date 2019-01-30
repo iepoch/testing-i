@@ -22,26 +22,34 @@ const weaponEnhance = {
 };
 
 const armour = {
-  // The durability of an item cannot be less than 20 when the item's enhancement level is between +0 and +14.
-  // The durability of an item cannot be less than 0 when the item's enhancement level is between +15 and TET.
+
   name: "Sheild",
   type: "armour",
-  durability: 100,
-  enhancement: 0
+  durability: 8,
+  enhancement: 15
 };
 
 describe('Success function', () => {
     // The item's enhancement increases by 1.
     // The name is updated to reflect the new enhancement level.
  it('will enhance the sword by 1', () => {
-    //  expect(enhancer.success(swords)).toEqual(weapons) // this is failing because the entire item list does not match
      expect(enhancer.success(swords)).toEqual(weaponEnhance) // this one works because all items match for weapon enhancement
  })
+
+it('will name is updated to reflect the new enhancement', ()=>{
+      expect(enhancer.success(swords)).toEqual(weaponEnhance) // this is failing because the entire item list does not match
+})
+
 })
 
 
 describe('Fail function', () => {
 
+    it(' will fail if item duribility < 20', ()=>{
+        expect(() => {
+            enhancer.fail(sheilds)
+        }).toThrow()
+    }) 
 })
 
 

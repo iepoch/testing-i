@@ -23,7 +23,7 @@ module.exports = {
         {
             name: 'Sheild',
             type: 'armour',
-            durability: 100,
+            durability: 2,
             enhancement: 0
         },
 
