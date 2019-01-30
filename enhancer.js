@@ -5,7 +5,9 @@
 module.exports = {
 
     sucess: (item) => {
-
+        return {
+            ...item
+        }
     },
 
     fail: (item) => {
