@@ -1,61 +1,71 @@
-const enhancer = require('./enhancer')
-const  {swords,sword02, sheilds}  = require('./items')
+const enhancer = require("./enhancer");
+const { swords, sheilds, sword02, scale } = require("./items");
 
 // Items have name, type, durability and enhancement.Add any other properties you need to implement the client's requirements.
 // The item's type can be weapon or armor.
-const weapons = {
-  // The durability of an item starts at 100.
-  // The maximum durability of an item is 100.
-  name: "Sword",
-  type: "weapon",
-  durability: 100,
-  enhancement: 0
-};
+
+// The durability of an item starts at 100.
+// The maximum durability of an item is 100.
 
 const weaponEnhance = {
   // The enhancement level of an item starts at 0 and can reach a maximum of PEN.
   ogName: "Sword",
   name: `+[${1}] Sword`,
   type: "weapon",
-  durability: 70,
+  durability: 100,
   enhancement: 1
 };
 
-const armour = {
-
-  name: "Sheild",
-  type: "armour",
-  durability: 8,
-  enhancement: 15
+const armourEnhance = {
+ogName: "Sheild",
+name: `+[${1}] Sheild`,
+type: "armour",
+  durability: 100,
+  enhancement: 1
 };
 
-describe('Success function', () => {
-    // The item's enhancement increases by 1.
-    // The name is updated to reflect the new enhancement level.
- it('will enhance the sword by 1', () => {
-     expect(enhancer.success(swords)).toEqual(weaponEnhance) // this one works because all items match for weapon enhancement
- })
 
-it('will name is updated to reflect the new enhancement', ()=>{
-      expect(enhancer.success(swords)).toEqual(weaponEnhance) // this is failing because the entire item list does not match
+
+describe('GAME TESTING', () => {
+    describe("Success function", () => {
+        // The item's enhancement increases by 1.
+        // The name is updated to reflect the new enhancement level.
+        const actual = enhancer.success(swords);
+        const expected = weaponEnhance
+        const armourActual = enhancer.success(sheilds);
+        const armourExpected = armourEnhance;
+        it("will enhance the sword & sheild by 1", () => {
+            expect(actual).toEqual(expected); // this one works because all items match for weapon enhancement
+            // expect(armourActual).toEqual(armourExpected);
+        });
+
+        it("will name is updated to reflect the new enhancement", () => {
+            expect(actual).toEqual(expected);
+        });
+    });
+
+    describe("Fail function", () => {
+        // If the item's enhancement is 14 or lower, the item cannot be enhanced if the durability is below 25.
+        it(" will fail if item duribility < 20", () => {
+            expect(() => {
+                enhancer.fail(sword02);
+            }).toThrow();
+        });
+        // If the item's enhancement is 15 or higher, the item cannot be enhanced if the durability is below 10.
+        it("will fail if enhancement is 15+ and durability is -10", () => {
+            expect(() => {
+                enhancer.fail(sword02);
+            }).toThrow();
+        });
+    });
+
+    describe("Repair function", () => {
+        it("will test if swords durability is 100", () => {
+            expect(enhancer.repair(scale)).toEqual(armourEnhance);
+        });
+    });
+
 })
 
-})
 
-
-describe('Fail function', () => {
-
-    it(' will fail if item duribility < 20', ()=>{
-        expect(() => {
-            enhancer.fail(sheilds)
-        }).toThrow()
-    }) 
-})
-
-
-describe('Repair function', () => {
-    it('will test if swords durability is 100', () => {
-        expect(enhancer.repair(sword02)).toEqual(weapons);
-    })
-})
 
