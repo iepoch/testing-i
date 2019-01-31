@@ -1,3 +1,4 @@
+const { levels } = require('./level')
 // enhancer file with all the modules
 
 module.exports = {
@@ -5,7 +6,7 @@ module.exports = {
     const spell = item.enhancement + 1;
     const ogName = item.name;
 
-    return { ...item, enhancement: spell, name: `+[${spell}] ${ogName}` };
+    return { ...item, enhancement: spell, name: `[+${spell}] ${ogName}` };
   },
 
   fail: item => {
@@ -21,14 +22,15 @@ module.exports = {
 
     let durability = item.durability;
     let enhancement = item.enhancement;
-    const updateName = item.name;
+    const updateName = item.ogName;
 
     if (enhancement > 0 && enhancement < 14) {
       durability = item.durability - 5;
     } else if (enhancement > 15) {
       enhancement = item.enhancement - 10;
     } else if (item.enhancement > 16) {
-      enhancement = item.enhancement - 1;
+        enhancement= item.enhancement - 1
+        item.name = `[+PRI] ${updateName}` // Not sure if I need it but I wanted to add it here
     }
 
     if (enhancement < 14 && durability < 25) {
@@ -38,18 +40,13 @@ module.exports = {
       throw new Error("Failed - Error Enhancing item");
     }
     // The name is updated to reflect the new enhancement level if it was decreased.
-    return {
-      ...item,
-      name: `[+${enhancement}] ${updateName}`,
-      durability,
-      enhancement
-    };
+    return item
   },
 
     repair: item => {
         let repairedItem = {
             ogName: item.ogName,
-            name: `+[${1}] Sheild`,
+            name: `[+1] Sheild`,
             durability: 100,
             type: item.type,
             enhancement: 1

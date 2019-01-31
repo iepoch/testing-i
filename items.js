@@ -29,5 +29,13 @@ module.exports = {
     type: "armour",
     durability: 25,
     enhancement: 0
-  }
+    },
+
+    bracers: {
+        ogName: "Bracers",
+        name: "Bracers",
+        type: "armour",
+        durability: 100,
+        enhancement: 'DUO'
+    }
 };
