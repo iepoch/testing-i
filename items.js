@@ -1,3 +1,4 @@
+const { levels } = require("./level");
 module.exports = {
   swords: {
     ogName: "Sword",
@@ -29,13 +30,20 @@ module.exports = {
     type: "armour",
     durability: 25,
     enhancement: 0
-    },
+  },
 
-    bracers: {
-        ogName: "Bracers",
-        name: "Bracers",
-        type: "armour",
-        durability: 100,
-        enhancement: 'DUO'
-    }
+  bracers: {
+    ogName: "Bracers",
+    name: "Bracers",
+    type: "armour",
+    durability: 100,
+    enhancement: "DUO"
+  },
+  bruteBracers: {
+    ogName: "Bracers",
+    name: "Bracers",
+    type: "armour",
+    durability: -1,
+    enhancement: levels[19].length
+  }
 };

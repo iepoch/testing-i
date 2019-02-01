@@ -26,7 +26,7 @@ module.exports = {
 
     if (enhancement > 0 && enhancement < 14) {
       durability = item.durability - 5;
-    } else if (enhancement > 15) {
+    } else if (item.durability <= 0 || item.enhancement > 15 || item.enhancement === levels[19].length) {
       enhancement = item.enhancement - 10;
     } else if (item.enhancement > 16 || item.enhancement === 'DUO') {
       enhancement = "PRI";
