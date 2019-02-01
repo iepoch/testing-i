@@ -1,4 +1,4 @@
-const { levels } = require('./level')
+const { levels } = require("./level");
 // enhancer file with all the modules
 
 module.exports = {
@@ -28,9 +28,9 @@ module.exports = {
       durability = item.durability - 5;
     } else if (enhancement > 15) {
       enhancement = item.enhancement - 10;
-    } else if (item.enhancement > 16) {
-        enhancement= item.enhancement - 1
-        item.name = `[+PRI] ${updateName}` // Not sure if I need it but I wanted to add it here
+    } else if (item.enhancement > 16 || item.enhancement === 'DUO') {
+      enhancement = "PRI";
+      item.name = `[+PRI] ${updateName}`; // Not sure if I need it but I wanted to add it here
     }
 
     if (enhancement < 14 && durability < 25) {
@@ -40,19 +40,17 @@ module.exports = {
       throw new Error("Failed - Error Enhancing item");
     }
     // The name is updated to reflect the new enhancement level if it was decreased.
-    return item
+    return { ...item, enhancement: enhancement };
   },
 
-    repair: item => {
-        let repairedItem = {
-            ogName: item.ogName,
-            name: `[+1] Sheild`,
-            durability: 100,
-            type: item.type,
-            enhancement: 1
-
-
-        }
-        return repairedItem;
+  repair: item => {
+    let repairedItem = {
+      ogName: item.ogName,
+      name: `[+1] Sheild`,
+      durability: 100,
+      type: item.type,
+      enhancement: 1
+    };
+    return repairedItem;
   }
 };

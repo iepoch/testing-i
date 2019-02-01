@@ -64,9 +64,9 @@ describe('GAME TESTING', () => {
                 enhancer.fail(sword02);
             }).toThrow();
         });
-//         it('will fail if enhancement is greater than 16(DUO, TRI, TET)',()=> {
-//            expect(enhancer.fail(bracers)).toEqual(bracersEnhance)
-//  })
+        it('will fail if enhancement is greater than 16(DUO, TRI, TET)',()=> {
+           expect(enhancer.fail(bracers)).toEqual(bracersEnhance)
+ })
 
     });
 
