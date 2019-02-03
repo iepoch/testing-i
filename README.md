@@ -1,4 +1,3 @@
-#Intial Commit
 
 # Testing I
 
